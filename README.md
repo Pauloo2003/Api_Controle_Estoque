@@ -1,3 +1,4 @@
 # ControleEstoque_backend
 # Em andamento
-#Desenv
+#npm install
+#npm start
