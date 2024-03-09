@@ -1,8 +1,8 @@
-const ProdutoService = require('../../../../domain/services/Produto/ProdutoServices');
+const ProdutoService = require('../../../../domain/services/Cadastros/ProdutoServices');
 
 class ProdutoController {
   constructor() {
-    this.userService = new ProdutoService();
+    this.produtoService = new ProdutoService();
     this.create = this.create.bind(this);
     this.findAll = this.findAll.bind(this);
     this.findOne = this.findOne.bind(this);
@@ -11,33 +11,33 @@ class ProdutoController {
   }
 
   async create(request, response) {
-    const user = await this.userService.create(request.body);
-    return response.status(201).json(user);
+    const produto = await this.produtoService.create(request.body);
+    return response.status(201).json(produto);
   }
 
   async findAll(request, response) {
     console.log(request.user);
-    const users = await this.userService.findAll(request.query);
-    response.status(200).json(users);
+    const produtos = await this.produtoService.findAll(request.user.userId);
+    response.status(200).json(produtos);
   }
 
   async findOne(request, response) {
-    const { userId } = request.user;
+    const { produtoId } = request.produto;
 
-    const user = await this.userService.findOne(userId);
-    return response.status(200).json(user);
+    const produto = await this.produtoService.findOne(produtoId);
+    return response.status(200).json(produto);
   }
 
   async update(request, response) {
     const { id } = request.params;
-    const user = await this.userService.update(id, request.body);
-    return response.status(200).json(user);
+    const produto = await this.produtoService.update(id, request.body);
+    return response.status(200).json(produto);
   }
 
   async delete(request, response) {
     const { id } = request.params;
-    const user = await this.userService.delete(id);
-    return response.status(200).json(user);
+    const produto = await this.produtoService.delete(id);
+    return response.status(200).json(produto);
   }
 }
 

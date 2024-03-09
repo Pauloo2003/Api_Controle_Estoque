@@ -11,10 +11,10 @@ const TemplateEmailRoutes = require('./TemplateEmail/TemplateEmail.routers');
 const OrganizationRoutes = require('./Organization/Organization.routers');
 const SendGridRoutes = require('./SendGrid/SendGrid.routers');
 const AddressRoutes = require('./Address/Address.routers');
-const FunnelRoutes = require('./Funnels/Funnels.routers');
 const LanguagesRoutes = require('./Languages/Languages.routers');
 const ObjectivesRoutes = require('./Objectives/Objectives.routers');
 const ProdutoRoutes = require('./Cadastros/Produto.routers');
+const { authenticateToken } = require('../../../domain/auth/middlewares/MiddlewaresAuth');
 
 const router = require('express').Router();
 
@@ -31,10 +31,9 @@ router.use('/security', SecurityGroupRoutes);
 router.use('/templateEmail', TemplateEmailRoutes);
 router.use('/sendgrid', SendGridRoutes);
 router.use('/code', CodeRoutes);
-router.use('/funnel', FunnelRoutes);
 router.use('/languages', LanguagesRoutes);
 router.use('/objectives', ObjectivesRoutes);
-router.use('/produtos', ProdutoRoutes);
+router.use('/produtos', authenticateToken, ProdutoRoutes);
 
 /* Auth*/
 

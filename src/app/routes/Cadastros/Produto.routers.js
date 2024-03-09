@@ -8,7 +8,7 @@ router.post('/create', new ProdutoController().create);
 
 router.get('/findAll', new ProdutoController().findAll);
 
-router.get('/findOne', authenticateToken, new ProdutoController().findOne);
+router.get('/findOne', new ProdutoController().findOne);
 
 router.put('/update/:id', new ProdutoController().update);
 
